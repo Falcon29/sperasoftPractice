@@ -47,14 +47,23 @@ import java.io.InputStreamReader;
 public class JavaFundamentals {
 
     public static void main( String[] args ) throws IOException {
-        int ant = fourArgs(222, 51, 111, 313);
+        int ant = fourArgs(222, 51, 111, 313);   //#1
         System.out.println(ant);
-        
-        arrayGenerator();
-        arraySort();
+
+        arrayGenerator();                        //#2
+        arraySort();                             //#3
+        symbolFinder();                          //#4
     }
 
     /* Practice #1 */
+    /**
+     * Java Fundamentals Practice #1: Find the minimum
+
+     * Create the following methods:
+     the method that takes 2 integer arguments and returns the lowest;
+     the method that takes 3 integer arguments and returns the lowest (using the first method);
+     the method that takes 4 integer arguments and returns the lowest (using the previous method)
+     */
 
     public static int twoArgs(int arg1, int arg2) {
         return arg1 < arg2 ? arg1 : arg2;
@@ -71,6 +80,22 @@ public class JavaFundamentals {
     }
 
     /* Practice #2 */
+    /**
+     Java Fundamentals Practice #2: Search for an element in the array
+
+     Implement a program that takes 2 integer numbers from the console:
+
+     array size;
+     a number to search in the array.
+     Generate a random array of integers of provided size and print it. Verify if the provided element
+     is present in the array. If it does print true otherwise print false.
+
+     Use several search algorithms. For example:
+     regular search one by one;
+     binary search.
+     Compare execution time for each algorithm.
+     */
+
 
     public static void arrayGenerator() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader( System.in ) );
@@ -95,6 +120,16 @@ public class JavaFundamentals {
     }
 
     /* Practice #3 */
+    /**
+     * Java Fundamentals Practice #3: Sort array
+     * Sort random array (number of arguments should be taken from in the console) of integer numbers using at least
+     2 of the following sort algorithms:
+
+     * bubble sort;
+     * optimized bubble sort;
+     * insertion sort;
+     * selection sort.
+     */
 
     public static void arraySort() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader( System.in ) );
@@ -146,4 +181,43 @@ public class JavaFundamentals {
             System.out.print(j + ", ");
         }
     }
+
+    /* Practice #4 */
+    /**
+     * Java Fundamentals Practice #4: Count element occurrences in a String
+
+     * Implement a program that requests an input of 1 symbol form the consoles and counts a number occurrences
+     of this symbol in a pre-created text and prints it to the console. The text may be hard-coded as a String in your code
+     */
+
+    public static void symbolFinder() throws IOException {
+
+        String testString = "Implement a program that requests an input of 1 symbol form the consoles " +
+                "and counts a number occurrences of this symbol in a pre-created text and prints it to the console." +
+                " The text may be hard-coded as a String in your code";
+        char arrString[] = testString.toLowerCase().toCharArray();
+        String symbol;
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader( System.in ) );
+
+        while (true) {
+            symbol = bufferedReader.readLine();
+            if (symbol.length() == 1) {
+                break;
+            } else {
+                System.out.println("Please enter ONE symbol");
+            }
+        }
+
+        int count = 0;
+
+        for ( int i = 0; i < arrString.length; i++ ) {
+            if (String.valueOf(arrString[i]).equals(symbol)) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+
 }
