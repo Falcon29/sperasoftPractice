@@ -47,12 +47,17 @@ import java.io.InputStreamReader;
 public class JavaFundamentals {
 
     public static void main( String[] args ) throws IOException {
-        int ant = fourArgs(222, 51, 111, 313);   //#1
-        System.out.println(ant);
+//        int ant = fourArgs(222, 51, 111, 313);   //#1
+//        System.out.println(ant);
+//
+//        arrayGenerator();                        //#2
+//        arraySort();                             //#3
+//        symbolFinder();                          //#4
 
-        arrayGenerator();                        //#2
-        arraySort();                             //#3
-        symbolFinder();                          //#4
+        int arr[] = {3, 4, 7, 1, 12, 44, 3, 33, 1, 5};
+
+        int i = arrayBinary( arr, 33 );
+        System.out.println(i);
     }
 
     /* Practice #1 */
@@ -117,6 +122,43 @@ public class JavaFundamentals {
                 break;
             }
         }
+
+        
+    }
+
+    /*
+    Binary Search
+
+    find element position
+     */
+
+    public static int arrayBinary(int arr[], int element) throws IOException {
+        for (int i = 0; i < arr.length; i++) {  //sort array
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if ( arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        int index = -1;
+        int low = 0;
+        int high = arr.length -1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] < element) {
+                low = mid + 1;
+            } else if (arr[mid] > element) {
+                high = mid - 1;
+            } else if (arr[mid] == element) {
+                index = mid;
+                break;
+            }
+        }
+        return index;
     }
 
     /* Practice #3 */
