@@ -27,17 +27,22 @@ package JavaObjectsBasics.Task2;
  * hours (range 0 - 23)
  * minutes (range 0 - 59)
  * seconds (range 0 - 59)
+ *
  * Three constructors:
  * default (with no parameters passed; it should initialize the represented time to 12:0:0)
  * a constructor with three parameters: hours, minutes, and seconds.
  * a constructor with one parameter: the value of time in seconds since midnight (it should be converted into the time value in hours, minutes, and seconds)
+ *
  * Instance methods:
  * a set-method method setClock() with one parameter seconds since midnight (to be converted into the time value in hours, minutes, and seconds as above)
  * method tick() with no parameters that increments the time stored in a Clock object by one second;
- * method addClock() accepting an object of type Clock as a parameter. The method should add the time represented by the parameter class to the time represented in the current class;
+ * method addClock() accepting an object of type Clock as a parameter. The method should add the time represented
+ *  by the parameter class to the time represented in the current class;
  * method to return a String representation of the Clock object in the form "(hh:mm:ss)", for example "(03:02:34)"
  * Add an instance method tickDown() which decrements the time stored in a Clock object by one second;
- * Add an instance method subtractClock() that takes one Clock parameter and returns the difference between the time represented in the current Clock object and the one represented by the Clock parameter. The difference of time should be returned as a Clock object.
+ * Add an instance method subtractClock() that takes one Clock parameter and returns the difference between the time represented in the current
+ *  Clock object and the one represented by the Clock parameter. The difference of time should be returned as a Clock object.
+ *
  * Write a separate class ClockDemo:
  *
  * Instantiate a Clock object firstClock using one integer seconds since midnight obtained from the user input;
@@ -50,4 +55,54 @@ package JavaObjectsBasics.Task2;
  */
 
 public class Clock {
+    int hour;
+    int min;
+    int sec;
+
+    public Clock() {
+        hour = 12;
+        min = 0;
+        sec = 0;
+    }
+
+    public Clock( int hour, int min, int sec ) {
+        this.hour = hour;
+        this.min = min;
+        this.sec = sec;
+    }
+
+    public Clock( int secondsSinceMidnight ) {
+        setClock( secondsSinceMidnight );
+    }
+
+    public void setClock( int secondsSinceMidnight ) {
+        hour = secondsSinceMidnight / 3600;
+        min = secondsSinceMidnight / 60 % 60;
+        sec = secondsSinceMidnight % 60;
+    }
+
+    public void tick() {
+        sec++;
+
+        if (sec > 59) {
+            sec = 0;
+            min++;
+
+            if (min > 59) {
+                min = 0;
+                sec = 0;
+                hour++;
+
+                if (hour > 23) {
+                    hour = 0;
+                    min = 0;
+                    sec = 0;
+                }
+            }
+        }
+    }
+
+    public String timeInString() {
+        return String.format( "%02d:%02d:%02d", hour, min, sec );
+    }
 }
