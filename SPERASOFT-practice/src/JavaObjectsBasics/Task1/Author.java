@@ -49,7 +49,20 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public String printFullName() {
-        return firstName + " " + lastName;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return  firstName + " " + lastName;
+    }
+
+    public void printFullName() {
+        System.out.println(getFirstName() + " " + getLastName());
     }
 }

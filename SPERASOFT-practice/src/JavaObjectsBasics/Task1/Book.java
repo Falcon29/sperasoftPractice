@@ -20,12 +20,12 @@ package JavaObjectsBasics.Task1;
 
 public class Book {
     String title;
-    String author;
+    Author author;
     double price;
 
-    public Book( String title, String author, double price ) {
+    public Book( String title, Author author, double price ) {
         this.title = title;
-        this.author = author;
+        this.author = new Author( author.getFirstName(), author.getLastName());
         this.price = price;
     }
 
