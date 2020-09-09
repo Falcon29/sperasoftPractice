@@ -25,7 +25,7 @@ public class Book {
 
     public Book( String title, Author author, double price ) {
         this.title = title;
-        this.author = new Author( author.getFirstName(), author.getLastName());
+        this.author = author;
         this.price = price;
     }
 

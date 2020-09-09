@@ -33,7 +33,7 @@ import java.io.InputStreamReader;
  * Get the difference of firstClock and secondClock by calling the method subtractClock() and print it to the console.
  */
 
-public class CLockDemo extends  Clock {
+public class ClockDemo {
 
     public static void main( String[] args ) throws IOException {
         Clock firstClock = new Clock(5732);
@@ -54,5 +54,12 @@ public class CLockDemo extends  Clock {
             secondClock.tick();
             System.out.println(secondClock.timeInString());
         }
+
+        firstClock.addClock( secondClock );
+
+        System.out.println(firstClock.timeInString());
+        System.out.println(secondClock.timeInString());
+
+        System.out.println( (firstClock.subtractClock( secondClock )).timeInString() );
     }
 }

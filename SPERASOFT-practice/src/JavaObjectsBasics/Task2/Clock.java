@@ -59,6 +59,18 @@ public class Clock {
     int min;
     int sec;
 
+    public int getHour() {
+        return hour;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public int getSec() {
+        return sec;
+    }
+
     public Clock() {
         hour = 12;
         min = 0;
@@ -75,6 +87,12 @@ public class Clock {
         setClock( secondsSinceMidnight );
     }
 
+    public void addClock(Clock clock) {
+        this.hour += clock.getHour();
+        this.min += clock.getMin();
+        this.sec += clock.getSec();
+    }
+    
     public void setClock( int secondsSinceMidnight ) {
         hour = secondsSinceMidnight / 3600;
         min = secondsSinceMidnight / 60 % 60;
@@ -100,6 +118,37 @@ public class Clock {
                 }
             }
         }
+    }
+
+    public void tickDown() {
+        sec--;
+
+        if (sec < 0) {
+            sec = 59;
+            min--;
+
+            if (min < 0) {
+                sec = 59;
+                min = 59;
+                hour--;
+
+                if (hour < 0) {
+                    sec = 59;
+                    min = 59;
+                    hour = 23;
+                }
+            }
+        }
+    }
+
+    public Clock subtractClock(Clock clock) {
+        Clock newClock = new Clock();
+
+        newClock.hour -= clock.getHour();
+        newClock.min -= clock.getMin();
+        newClock.sec -= clock.getSec();
+        
+        return newClock;
     }
 
     public String timeInString() {

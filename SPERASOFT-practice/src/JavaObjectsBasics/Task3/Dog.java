@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * Objects Basics Practice #3: Dogs
@@ -45,28 +46,16 @@ import java.util.Random;
 
 public class Dog {
 
-    protected String name;
-    protected int age;
-    protected String size;
+    private String name;
+    private int age;
+    private Size size;
 
     private static final Random RAND = new Random();
     BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
 
-    public void setAge( int age ) {
-        if (age > 20 || age < 0) {
-            this.age = RAND.nextInt(1 - 20 ) + 1;
-        } else {
-            this.age = age;
-        }
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     public void setName( String name ) {
         if (name.isEmpty()) {
-            this.name = "Random";
+            this.name = UUID.randomUUID().toString();
         } else {
             this.name = name;
         }
@@ -77,17 +66,23 @@ public class Dog {
     }
 
     public void setSize(String size) {
-        if (!(size.equalsIgnoreCase( "Big" )
-                || size.equalsIgnoreCase( "Medium" )
-                || size.equalsIgnoreCase( "Small" ))) {
-            this.size = Size.getRandomValue();
+        this.size = Size.getSizeByString(size);
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setAge( String age ) {
+        if (age.isEmpty()) {
+            this.age = RAND.nextInt(20 - 1 ) + 1;
         } else {
-            this.size = size;
+            this.age = Integer.parseInt( age );
         }
     }
 
-    public String getSize() {
-        return size;
+    public int getAge() {
+        return age;
     }
 
     enum Size {
@@ -97,9 +92,19 @@ public class Dog {
 
         private static final Size[] VALUES = values();
 
-        public static String getRandomValue() {
-            System.out.println("Dog size has been setted randomly.");
-            return VALUES[RAND.nextInt( VALUES.length )].toString();
+        public static Size getRandomValue() {
+            return VALUES[RAND.nextInt( VALUES.length )];
+        }
+
+        public static Size getSizeByString(String size) {
+            if (size.isEmpty()
+                    || !(size.equalsIgnoreCase( "Big" )
+                    || size.equalsIgnoreCase( "Medium" )
+                    || size.equalsIgnoreCase( "Small" ))) {
+                return Size.getRandomValue();
+            } else {
+                return Size.valueOf( size );
+            }
         }
     }
 

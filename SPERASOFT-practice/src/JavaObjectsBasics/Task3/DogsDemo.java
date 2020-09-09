@@ -33,7 +33,7 @@ import java.util.List;
   * Print out the array after sorting by each field.
  */
 
-public class DogsDemo extends Dog {
+public class DogsDemo {
 
     public static void main( String[] args ) throws IOException {
 
@@ -42,7 +42,7 @@ public class DogsDemo extends Dog {
         int count = Integer.parseInt( br.readLine() );
 
         String name;
-        int age;
+        String age;
         String size;
 
         List<Dog> dogs = new ArrayList<>();
@@ -52,10 +52,14 @@ public class DogsDemo extends Dog {
             name = br.readLine();
 
             System.out.println("Enter age: ");
-            age = Integer.parseInt( br.readLine() );
-
+            age = br.readLine();
+            
             System.out.println("Enter size: ");
-            size = br.readLine();
+            size = br.readLine() ;
+
+            if (size.isEmpty()) {
+                size = Dog.Size.getRandomValue().toString();
+            }
 
             Dog dog = new Dog();
             dog.setName( name );
@@ -65,22 +69,25 @@ public class DogsDemo extends Dog {
             dogs.add( dog );
         }
 
+        System.out.println("Sort by name: ");
         Collections.sort(dogs, Comparator.comparing(Dog::getName));
 
         for (Dog dog : dogs) {
-            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize()));
+            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize().toString()));
         }
 
+        System.out.println("Sort by age: ");
         Collections.sort(dogs, Comparator.comparing(Dog::getAge));
 
         for (Dog dog : dogs) {
-            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize()));
+            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize().toString()));
         }
 
+        System.out.println("Sort by size: ");
         Collections.sort(dogs, Comparator.comparing(Dog::getSize));
 
         for (Dog dog : dogs) {
-            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize()));
+            System.out.println(String.format( "Dog %s, age - %s, size - %s",  dog.getName(), dog.getAge(), dog.getSize().toString()));
         }
     }
 
