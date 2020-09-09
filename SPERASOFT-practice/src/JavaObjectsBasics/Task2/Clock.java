@@ -59,6 +59,18 @@ public class Clock {
     private int min;
     private int sec;
 
+    public void setHour( int hour ) {
+        this.hour = hour;
+    }
+
+    public void setMin( int min ) {
+        this.min = min;
+    }
+
+    public void setSec( int sec ) {
+        this.sec = sec;
+    }
+
     public int getHour() {
         return hour;
     }
@@ -144,9 +156,9 @@ public class Clock {
     public Clock subtractClock(Clock clock) {
         Clock newClock = new Clock();
 
-        newClock.hour -= clock.getHour();
-        newClock.min -= clock.getMin();
-        newClock.sec -= clock.getSec();
+        newClock.setHour(this.getHour() - clock.getHour());
+        newClock.setMin(this.getHour() - clock.getMin());
+        newClock.setSec(this.getHour() - clock.getSec());
         
         return newClock;
     }
