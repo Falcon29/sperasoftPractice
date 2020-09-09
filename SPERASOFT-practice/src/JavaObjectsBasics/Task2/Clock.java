@@ -55,9 +55,9 @@ package JavaObjectsBasics.Task2;
  */
 
 public class Clock {
-    int hour;
-    int min;
-    int sec;
+    private int hour;
+    private int min;
+    private int sec;
 
     public int getHour() {
         return hour;
