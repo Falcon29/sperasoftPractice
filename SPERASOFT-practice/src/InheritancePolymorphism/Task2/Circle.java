@@ -2,7 +2,7 @@
  *
  * =======================================================================
  *
- * Copyright (c) 2009-2020 Sony Network Entertainment International, LLC. All rights reserved.
+ * Copyright (c) 2009-2021 Sony Network Entertainment International, LLC. All rights reserved.
  *
  * This software is the confidential and proprietary information of
  * Sony Network Entertainment International, LLC.
@@ -16,23 +16,25 @@
  *
  */
 
-package InheritancePolymorphism.Task1;
+package InheritancePolymorphism.Task2;
 
 import static java.lang.Math.PI;
 
-public class Circle {
+public class Circle extends Shape {
     protected double radius;
-    protected String colour;
 
-    public Circle() {}
+    public Circle() {
+        this.radius = 1.0;
+    }
 
     public Circle( double radius ) {
         this.radius = radius;
     }
 
-    public Circle( double radius, String colour ) {
+    public Circle( double radius, String colour, boolean filled ) {
         this.radius = radius;
-        this.colour = colour;
+        super.colour = colour;
+        super.filled = filled;
     }
 
     public double getRadius() {
@@ -43,27 +45,13 @@ public class Circle {
         this.radius = radius;
     }
 
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour( String colour ) {
-        this.colour = colour;
-    }
-
-    /**
-     *  * getArea();
-     *  * toString() - print Circle parameters in a user-friendly form.
-     */
-
     public double getArea() {
-        return PI*Math.pow( radius, 2 );
+        return PI * Math.pow( radius, 2 );
     }
 
     @Override
     public String toString() {
-        return String.format("");
+        return String.format( "A Circle with radius = %s, which is a subclass of %s", radius,
+                Circle.class.getSuperclass().toString() );
     }
-
-
 }
